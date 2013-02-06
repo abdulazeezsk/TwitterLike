@@ -56,6 +56,12 @@ public class TweetsData {
 		
 		Set<String> usernames = getRelationships(myUsername);
 		List<Tweet> resultTweets = new ArrayList<Tweet>();
+		if(null == usernames) {
+			System.out.println("No Relationships for this user\n");
+			return resultTweets;
+		}
+		
+		System.out.println("User follows " + usernames.size() + " other users\n");
 		for(String username: usernames) {
 			resultTweets.addAll(allTweets.get(username));
 		}

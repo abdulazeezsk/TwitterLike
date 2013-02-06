@@ -1,10 +1,6 @@
 package com.twitterlike.server.service;
 
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.twitterlike.server.domain.Tweet;
 import com.twitterlike.server.persistence.TweetsData;
@@ -26,9 +22,9 @@ public class TweetServiceImpl implements TweetService {
 		
 		if(unread) {
 			return tweetsDB.getUnreadTweets(username); 
+		} else {
+			return tweetsDB.getAllTweets(username);
 		}
-		
-		return null;
 	}
 }
 
