@@ -88,7 +88,7 @@ public class TweetsData {
 				if(false == unreadStatus.booleanValue()) {
 					break;
 				}
-				unreadStatus = false;
+				tweet.getUnreadStatus().put(myUsername, new Boolean(false));
 				resultTweets.add(tweet);
 			}
 		}
