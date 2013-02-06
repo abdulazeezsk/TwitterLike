@@ -24,11 +24,15 @@ public class TweetsData {
 	public static TweetsData getInstance() {
 		if(null ==  persistentData) {
 			persistentData = new TweetsData();
-			LinkedList<Tweet> tweets = new LinkedList<Tweet>();
-			persistentData.allTweets.put("user1", tweets);
-			persistentData.allTweets.put("user2", tweets);
-			persistentData.allTweets.put("user3", tweets);
-			persistentData.allTweets.put("user4", tweets);
+			LinkedList<Tweet> tweets1 = new LinkedList<Tweet>();
+			LinkedList<Tweet> tweets2 = new LinkedList<Tweet>();
+			LinkedList<Tweet> tweets3 = new LinkedList<Tweet>();
+			LinkedList<Tweet> tweets4 = new LinkedList<Tweet>();
+			
+			persistentData.allTweets.put("user1", tweets1);
+			persistentData.allTweets.put("user2", tweets2);
+			persistentData.allTweets.put("user3", tweets3);
+			persistentData.allTweets.put("user4", tweets4);
 			
 			Set<String> aFollows = new HashSet<String>();
 			aFollows.add("user4");
@@ -36,8 +40,8 @@ public class TweetsData {
 			persistentData.relationships.put("user1", aFollows);
 			
 			Set<String> bFollows = new HashSet<String>();
-			aFollows.add("user1");
-			aFollows.add("user3");
+			bFollows.add("user1");
+			bFollows.add("user3");
 			persistentData.relationships.put("user2", bFollows);
 			
 		}
@@ -62,9 +66,16 @@ public class TweetsData {
 		
 		Set<String> usernames = getRelationships(myUsername);
 		List<Tweet> resultTweets = new ArrayList<Tweet>();
+		if(null == usernames) {
+			System.out.println("No Relationships for this user\n");
+			return resultTweets;
+		}
+		
+		System.out.println("User follows " + usernames.size() + " other users\n");
 		for(String username: usernames) {
 			List<Tweet> userTweets = allTweets.get(username);
 			int tweetsLength = userTweets.size();
+			System.out.println("Length of " + username + " Tweets:" + tweetsLength);
 			for(int index =0; index < tweetsLength; index++) {
 				Tweet tweet = userTweets.get(index);
 				Boolean unreadStatus = tweet.getUnreadStatus().get(myUsername); 
@@ -85,9 +96,15 @@ public class TweetsData {
 	public void addNewTweet(String username, String newTweetMsg) {
 		
 		Tweet newTweet = new Tweet(newTweetMsg);
-		LinkedList<Tweet> tweets = allTweets.get(newTweet);
-		if(null != tweets)
+		LinkedList<Tweet> tweets = allTweets.get(username);
+		if(null != tweets) {
 			tweets.addFirst(newTweet);
+			System.out.println(username + ":" + newTweetMsg);
+		} else {
+			System.out.println("Error in reading tweets of user " + username);
+		}
+		
+		//LinkedList<Tweet> alltweets = allTweets.
 	}
 
 	public Map<String, Set<String>> getRelationships() {
