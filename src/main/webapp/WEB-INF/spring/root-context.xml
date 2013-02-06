@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<bean id="TweetsData"		class="com.twitterlike.server.persistence.TweetsData" />
+	<bean id="TweetService" 	class="com.twitterlike.server.service.TweetServiceImpl" />
+	<bean id="TweetsDAO" 		class="com.twitterlike.server.persistence.dao.TweetsDAOImpl" />
+	
+</beans>
