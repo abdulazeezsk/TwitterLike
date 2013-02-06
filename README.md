@@ -46,7 +46,7 @@ POST http://localhost:8080/newtweet
 Following GET call returns unread tweets of the user(It returns tweets of this particular user is following on this application ),
 
 ```
-GET http://locahost:8080/gettweets?unread=true
+GET http://locahost:8080/gettweets/{username}?unread=true
 ```
 
 
@@ -55,5 +55,5 @@ GET http://locahost:8080/gettweets?unread=true
 Following GET call returns all tweets of the user(It returns tweets of this particular user is following on this application ),
 
 ```
-GET http://locahost:8080/gettweets?unread=false
+GET http://locahost:8080/gettweets/{username}?unread=false
 ```
